@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import app from 'app';
-import { connect as connectToDb } from 'db/mongo';
+import { connect as connectToDb } from 'db';
 import env from 'config/env';
 import log from 'lib/log';
 

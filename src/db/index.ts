@@ -1,5 +1,28 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-export async function connect(): Promise<void> {}
+import { Collection } from 'mongodb';
 
-// TODO: replace this with your driver code
-export async function query() {}
+import { connectToMongo } from './mongo';
+import initExample, { Example as ExampleType } from './example';
+
+/**
+ * re-export anything from the collection files
+ */
+export { close, mongoRetry } from './mongo';
+
+/**
+ * declare collections here, they won't be undefined before being called
+ * guaranteed by calling connect on startup before we ever use any collections
+ */
+let Example: Collection<ExampleType>;
+
+/**
+ * connects to mongo and initializes collections
+ */
+export async function connect(): Promise<void> {
+    await connectToMongo();
+    // also need to declare collections
+    Example = initExample();
+}
+
+export default {
+    Example: (): Collection<ExampleType> => Example,
+};
