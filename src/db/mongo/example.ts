@@ -2,7 +2,7 @@ import { Collection, ObjectId } from 'mongodb';
 
 import { getCollection } from './mongo';
 
-interface Example {
+export interface Example {
     _id: ObjectId;
 }
 
