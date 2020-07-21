@@ -1,7 +1,8 @@
 version: '3.8'
 services:
     service-base: # rename this to something like <yourservicename>-service
-        build: .
+        build: 
+            context: .
         volumes:
             - ./src:/usr/app/src
         ports:
